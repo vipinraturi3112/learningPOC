@@ -1,0 +1,3 @@
+// npm run dev
+// dotnet run;  
+// ng serve --open

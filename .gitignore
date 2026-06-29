@@ -1,0 +1,37 @@
+# =========================================================================
+# ROOT MASTER GITIGNORE
+# =========================================================================
+
+# Node / React global dependencies & builds
+node_modules/
+dist/
+.env
+
+# .NET build outputs & environment logs
+bin/
+obj/
+appsettings.Development.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE configuration folders
+.vscode/
+.idea/
+
+# =========================================================================
+# Specific Frontend Angular Rules
+# =========================================================================
+frontend-angular/dist/
+frontend-angular/tmp/
+frontend-angular/out-tsc/
+frontend-angular/bazel-out/
+frontend-angular/node_modules/
+frontend-angular/.angular/
+frontend-angular/npm-debug.log*
+frontend-angular/yarn-error.log*
+frontend-angular/.vscode/*
+!frontend-angular/.vscode/settings.json
+!frontend-angular/.vscode/tasks.json
+!frontend-angular/.vscode/launch.json
