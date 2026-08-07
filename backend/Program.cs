@@ -1,4 +1,6 @@
 using backend.Features.Exercise01_CQRS;
+using backend.Features.Exercise02_DI_Lifetimes;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,14 +9,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<CreateProductService>();
 builder.Services.AddScoped<GetProductQueryService>();
+
+// Exercise 2: DI & service lifetimes — same concrete class shape,
+// registered three different ways so the behavior differs.
+builder.Services.AddTransient<TransientService>();
+builder.Services.AddScoped<ScopedService>();
+builder.Services.AddSingleton<SingletonService>();
+builder.Services.AddScoped<NestedConsumer>();
+// NOT registering CaptiveDependencyService here on purpose — see its comments.
+
 builder.Services.AddControllers(); // <-- CRITICAL LINE 1
 
 var app = builder.Build();
 
+// Exercise 2: stash the ROOT service provider so /api/dilifetimes/buggy can
+// deliberately misuse it later (see RootProviderHolder.cs for why).
+RootProviderHolder.Instance = app.Services;
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.MapOpenApi(); // serves the raw spec at /openapi/v1.json
+    app.MapScalarApiReference(); // interactive UI reading that spec, at /scalar
 }
 
 app.UseHttpsRedirection();

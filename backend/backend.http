@@ -4,3 +4,16 @@ GET {{backend_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# Exercise 2: DI & service lifetimes
+# Fire this one twice and compare the scopedId/singletonId across the two responses.
+GET {{backend_HostAddress}}/api/dilifetimes
+Accept: application/json
+
+###
+
+# Exercise 2: the captive dependency error, triggered on purpose
+GET {{backend_HostAddress}}/api/dilifetimes/buggy
+Accept: application/json
+
+###
