@@ -1,122 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import Lesson1Props from './lessons/Lesson1Props';
+import Lesson2State from './lessons/Lesson2State';
+import Lesson3Conditional from './lessons/Lesson3Conditional';
+import Lesson4Lists from './lessons/Lesson4Lists';
+import Lesson5Effect from './lessons/Lesson5Effect';
+import Lesson6Forms from './lessons/Lesson6Forms';
+import Lesson7CustomHooks from './lessons/Lesson7CustomHooks';
 
-function App() {
-  const [count, setCount] = useState(0)
+// As we go, each new lesson gets its own file in src/lessons/,
+// and gets added to this list — App just switches between them.
+const lessons = [
+  { id: 'props', title: '1. Props', Component: Lesson1Props },
+  { id: 'state', title: '2. State', Component: Lesson2State },
+  { id: 'conditional', title: '3. Conditional', Component: Lesson3Conditional },
+  { id: 'lists', title: '4. Lists & keys', Component: Lesson4Lists },
+  { id: 'effect', title: '5. useEffect', Component: Lesson5Effect },
+  { id: 'forms', title: '6. Forms', Component: Lesson6Forms },
+  { id: 'hooks', title: '7. Custom hooks', Component: Lesson7CustomHooks },
+];
+
+export default function App() {
+  const [activeId, setActiveId] = useState(lessons[0].id);
+  const active = lessons.find((l) => l.id === activeId);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+      <nav style={{ width: 180, padding: '1rem', borderRight: '1px solid #ddd' }}>
+        <h3>Lessons</h3>
+        {lessons.map((l) => (
+          <button
+            key={l.id}
+            onClick={() => setActiveId(l.id)}
+            style={{
+              display: 'block',
+              width: '100%',
+              textAlign: 'left',
+              padding: '0.5rem',
+              marginBottom: '0.25rem',
+              background: l.id === activeId ? '#333' : '#f0f0f0',
+              color: l.id === activeId ? '#fff' : '#000',
+              border: 'none',
+              borderRadius: 4,
+              cursor: 'pointer',
+            }}
+          >
+            {l.title}
+          </button>
+        ))}
+      </nav>
+      <main style={{ flex: 1, padding: '1.5rem' }}>
+        <active.Component />
+      </main>
+    </div>
+  );
 }
-
-export default App
