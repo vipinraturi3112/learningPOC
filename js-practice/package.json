@@ -1,0 +1,6 @@
+{
+  "name": "js-practice",
+  "private": true,
+  "type": "module",
+  "description": "Plain JavaScript fundamentals & good-practice exercises. Run any lesson with: node <file>"
+}

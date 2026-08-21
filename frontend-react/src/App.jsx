@@ -6,6 +6,7 @@ import Lesson4Lists from './lessons/Lesson4Lists';
 import Lesson5Effect from './lessons/Lesson5Effect';
 import Lesson6Forms from './lessons/Lesson6Forms';
 import Lesson7CustomHooks from './lessons/Lesson7CustomHooks';
+import Lesson8Reducer from './lessons/Lesson8Reducer';
 
 // As we go, each new lesson gets its own file in src/lessons/,
 // and gets added to this list — App just switches between them.
@@ -17,6 +18,7 @@ const lessons = [
   { id: 'effect', title: '5. useEffect', Component: Lesson5Effect },
   { id: 'forms', title: '6. Forms', Component: Lesson6Forms },
   { id: 'hooks', title: '7. Custom hooks', Component: Lesson7CustomHooks },
+  { id: 'reducer', title: '8. useReducer', Component: Lesson8Reducer },
 ];
 
 export default function App() {
