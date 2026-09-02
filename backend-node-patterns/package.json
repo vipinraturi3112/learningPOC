@@ -1,0 +1,12 @@
+{
+  "name": "backend-node-patterns",
+  "private": true,
+  "type": "module",
+  "description": "MEAN-stack backend design patterns (Express/Node). Run with: npm install && npm start",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
